@@ -6,23 +6,25 @@ from langchain_core.prompts import ChatPromptTemplate
 import os
 import uvicorn
 
-# Load environment variables
+# Load environment variables from .env file
 load_dotenv()
 os.environ["GROQ_API_KEY"] = os.getenv("API_KEY")
 
-# Initialize FastAPI
+# Initialize FastAPI app
 app = FastAPI()
 
-# Define request schema
+# Define request schema 
 class QueryInput(BaseModel):
     query: str
 
-# Prepare prompt and LLM chain
+# Prepare prompt and LLM chain 
 prompt = ChatPromptTemplate.from_messages([
     ("system", "You are a helpful chatbot that answers the user query. If you don't know the answer, say 'I don't know'."),
     ("human", "{input}"),
 ])
 
+
+# Initialize the LLM with Groq API key
 llm = ChatGroq(
     model="llama-3.1-8b-instant",
     temperature=0,
@@ -32,6 +34,11 @@ llm = ChatGroq(
 )
 
 chain = prompt | llm
+
+
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the Chat API!"}
 
 # Define route
 @app.post("/chat/")
