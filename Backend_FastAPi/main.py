@@ -41,7 +41,7 @@ async def root():
     return {"message": "Welcome to the Chat API!"}
 
 # Define route
-@app.post("/chat/")
+@app.post("/chat")
 async def get_chat_response(user_input: QueryInput):
     try:
         result = chain.invoke({"input": user_input.query})
