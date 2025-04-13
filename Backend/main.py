@@ -5,6 +5,7 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 import os
 import uvicorn
+from fastapi.middleware.cors import CORSMiddleware
 
 # Load environment variables from .env file
 load_dotenv()
@@ -12,6 +13,13 @@ os.environ["GROQ_API_KEY"] = os.getenv("API_KEY")
 
 # Initialize FastAPI app
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    allow_origins=["*"],  # Adjust this to your needs
+)
 
 # Define request schema 
 class QueryInput(BaseModel):
@@ -47,12 +55,15 @@ async def get_chat_response(user_input: QueryInput):
         result = chain.invoke({"input": user_input.query})
         return {"response": result.content}
     except Exception as e:
+        print(f"Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+    
+    
 
 
 # Entry point
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
 
 
 
