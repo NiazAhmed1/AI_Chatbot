@@ -135,7 +135,7 @@ export default function ChatUI() {
       <header className="border-b border-gray-700 py-4 px-6 bg-gray-800 shadow-md">
         <div className="flex items-center">
           <Bot size={24} className="text-purple-400 mr-2" />
-          <h1 className="text-xl font-semibold text-white">Groq Chat</h1>
+          <h1 className="text-xl font-semibold text-white">Chat with AI</h1>
         </div>
       </header>
 
@@ -146,7 +146,7 @@ export default function ChatUI() {
             <div className="text-center space-y-3 max-w-md">
               <Bot size={48} className="mx-auto text-purple-500 opacity-50" />
               <h2 className="text-xl font-medium text-gray-300">
-                Welcome to Groq Chat
+                Welcome to AI ChatBot
               </h2>
               <p className="text-gray-400">
                 Start a conversation by typing a message below.
