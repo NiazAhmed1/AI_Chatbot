@@ -146,7 +146,7 @@ export default function ChatUI() {
             <div className="text-center space-y-3 max-w-md">
               <Bot size={48} className="mx-auto text-purple-500 opacity-50" />
               <h2 className="text-xl font-medium text-gray-300">
-                Welcome to AI ChatBot
+                Welcome to AI ChatBot.
               </h2>
               <p className="text-gray-400">
                 Start a conversation by typing a message below.
