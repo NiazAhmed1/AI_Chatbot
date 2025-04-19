@@ -34,7 +34,7 @@ prompt = ChatPromptTemplate.from_messages([
 
 # Initialize the LLM with Groq API key
 llm = ChatGroq(
-    model="gemma2-9b-it",
+    model="llama-3.1-8b-instant",
     temperature=0,
     max_tokens=None,
     timeout=None,
